@@ -1,6 +1,6 @@
 <?php 
 /**
- * @package  AlecadddPlugin
+ * @package  WPMagicMouse
  */
 namespace Inc\Api;
 
