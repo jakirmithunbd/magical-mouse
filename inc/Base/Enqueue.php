@@ -1,0 +1,21 @@
+<?php
+/**
+ * @package  WPMagicMouse
+*/
+namespace Inc\Base; 
+use Inc\Base\BaseController;
+
+class Enqueue extends BaseController
+
+{
+    public function register() 
+    {
+        add_action( 'admin_enqueue_scripts', [$this, 'enqueue'] );
+    }
+
+    function enqueue()
+    {
+        wp_enqueue_style('admin_style', $this->plugin_url . '/assets/css/admin.css');
+        wp_enqueue_script('admin_script', $this->plugin_url . '/assets/js/admin.js');
+    }
+}
