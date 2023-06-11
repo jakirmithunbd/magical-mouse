@@ -57,7 +57,7 @@ class Admin extends BaseController
 				'page_title' => 'Custom Post Types', 
 				'menu_title' => 'CPT', 
 				'capability' => 'manage_options', 
-				'menu_slug' => 'alecaddd_cpt', 
+				'menu_slug' => 'wpmm_ctp', 
 				//'callback' => array( $this->callbacks, 'adminCpt' )
 			),
 		);
