@@ -13,7 +13,7 @@
 
 			<form method="post" action="options.php">
 				<?php 
-					//settings_fields( 'alecaddd_options_group' );
+					settings_fields( 'wp_magic_mouse_options_group' );
 					do_settings_sections( 'wp_magic_mouse' );
 					submit_button();
 				?>
