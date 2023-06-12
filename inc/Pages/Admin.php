@@ -102,14 +102,14 @@ class Admin extends BaseController
 	{
 		$args = array(
 			array(
-				'id' => 'text_example',
-				'title' => 'Text Example',
-				'callback' => array( $this->callbacks, 'alecadddTextExample' ),
+				'id' => 'outer_style',
+				'title' => __('Outer Style', 'wpmm'),
+				'callback' => array( $this->callbacks, 'wpmm_outerStyle' ),
 				'page' => 'wp_magic_mouse',
 				'section' => 'wp_magic_mouse_admin_index',
 				'args' => array(
-					'label_for' => 'text_example',
-					'class' => 'example-class'
+					'label_for' => 'outerstyle',
+					'class' => 'ui-toggle'
 				)
 			),
 			array(
@@ -117,10 +117,10 @@ class Admin extends BaseController
 				'title' => 'First Name',
 				'callback' => array( $this->callbacks, 'alecadddFirstName' ),
 				'page' => 'wp_magic_mouse',
-				'section' => 'alecaddd_admin_index',
+				'section' => 'wp_magic_mouse_admin_index',
 				'args' => array(
 					'label_for' => 'first_name',
-					'class' => 'example-class'
+					'class' => 'ui-toggle'
 				)
 			)
 		);
