@@ -33,24 +33,34 @@ class Enqueue extends BaseController
         $hover_effect = get_option('hover_effect_settings');
         $default_cursor = get_option('default_cursor');
 
+        $check_tf = $default_cursor == 1 ? 'true' : 'false';
+
         $mouse_script = <<<EOD
             magicMouse({
                 "outerStyle": "disable",
                 "hoverEffect": "{$hover_effect}",
-                "hoverItemMove": false,
-                "defaultCursor": false,
+                "hoverItemMove": true,
+                "defaultCursor": {$check_tf},
                 "outerWidth": {$outer_width},
                 "outerHeight": {$outer_height}
             });
         EOD;
         wp_add_inline_script('magic_js', $mouse_script);
 
-        //$cursor_color = get_option('cursor_color');
+        $cursor_color = get_option('cursor_color');
+        $pointer_color = get_option('pointer_color');
         $mouse_style = <<<EOD
             #magicMouseCursor {
-                border: 1px solid #85BFBC;
+                border: 1px solid {$cursor_color};
                 background: transparent;
                 border-radius: 50%;
+            }
+            
+            #magicPointer {
+              height: 5px;
+              width: 5px;
+              background: {$pointer_color};
+              border-radius: 50%;
             }
         EOD;
         wp_add_inline_style('magic_css', $mouse_style);
@@ -61,6 +71,6 @@ class Enqueue extends BaseController
     }
 
     public function customizer_assets() {
-        wp_enqueue_script('cust-customizer-js', get_theme_file_uri( '/assets/js/customizer.js' ), array('jquery'), time(), true);
+        wp_enqueue_script('custs-customizer-js', $this->plugin_url . 'assets/js/customizer.js', array('jquery'), time(), true);
     }
 }

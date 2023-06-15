@@ -2,19 +2,13 @@
 /**
  * @package  WPMagicMouse
 */
-namespace Inc\Base; 
+namespace Inc\Base;
 use Inc\Base\BaseController;
+use WP_Customize_Color_Control;
 
-class Customizer extends BaseController
+class WpmmCustomizer extends BaseController
 {
-    public $color_obj;
-    public function __construct () {
-        global $wp_customize;
-        //$this->color_obj = WP_Customize_Color_Control();
-    }
-
-
-    public function register() 
+    public function __construct() 
 	{
 		add_action('customize_register', array($this, 'wpmm_customizer'));
 	}
@@ -59,6 +53,20 @@ class Customizer extends BaseController
                 'max' => 90
             )
         ));
+
+        // Default cursor
+        $wp_customize->add_setting('default_cursor', array(
+            'default' 	=> false,
+            'transport'	=> 'refresh',
+            'type'      => 'option'
+        ));
+
+        $wp_customize->add_control('default_cursor_ctrl', array(
+            'label' 	=> __('Enable Default Cursor', 'wpmm'),
+            'section'	=> 'magic_mouse',
+            'settings'	=> 'default_cursor',
+            'type'		=> 'checkbox'
+        ));
         
 
         // CURSOR HOVER EFFECT
@@ -81,16 +89,30 @@ class Customizer extends BaseController
         ));
 
         // Cursor Color
-        // $wp_customize->add_setting('cursor_color', array(
-        //     'default'     => '#000',
-        //     'transport'   => 'postMessage',
-        // ));
-        
-        // $wp_customize->add_control( new color_obj($wp_customize, 'color_control', array(
-        //     'label'    => __('Cursor Color', 'cust'),
-        //     'section'  => 'magic_mouse',
-        //     'settings' => 'cursor_color'
-        // )));
+        $wp_customize->add_setting('cursor_color', array(
+            'default'     => '#000',
+            'transport'   => 'refresh',
+            'type'		=> 'option'
+        ));
+
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'cursor_color_ctrl', array(
+            'label' => __( 'Cursor Color', 'wpmm' ),
+            'section' => 'magic_mouse',
+            'settings'	=> 'cursor_color',
+          ) ) );
+
+        // Pointer Color
+        $wp_customize->add_setting('pointer_color', array(
+            'default'     => '#000',
+            'transport'   => 'refresh',
+            'type'		=> 'option'
+        ));
+
+        $wp_customize->add_control( new WP_Customize_Color_Control( $wp_customize, 'pointer_color_ctrl', array(
+            'label' => __( 'Pointer Color', 'wpmm' ),
+            'section' => 'magic_mouse',
+            'settings'	=> 'pointer_color',
+        ) ) );
     }
 }
 

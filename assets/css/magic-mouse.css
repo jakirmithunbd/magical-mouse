@@ -22,13 +22,9 @@
 
 #magicPointer {
   z-index: 10000000 !important;
-  height: 5px;
-  width: 5px;
   top: 0;
   left: 0;
   position: fixed;
-  background: #59ba87;
-  border-radius: 50%;
   pointer-events: none;
   -webkit-transition: background 0.2s, width 0.2s, height 0.2s, -webkit-box-shadow 0.2s;
   transition: background 0.2s, width 0.2s, height 0.2s, -webkit-box-shadow 0.2s;
