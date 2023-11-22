@@ -1,0 +1,79 @@
+<?php
+
+defined( 'ABSPATH' ) or wp_die( 'Hey, what are you doing here? You silly human!' );
+
+if ( ! class_exists( 'Magical_MOUSE_Enqueue' ) ) {
+    /**
+     * The enqueue class;
+     */
+    class Magical_MOUSE_Enqueue {
+        protected static $instance = null;
+        public function register() {
+            add_action( 'wp_enqueue_scripts', [$this, 'frontend_enqueue'] );
+            add_action( 'customize_preview_init', [$this, 'customizer_assets'] );
+        }
+
+        function frontend_enqueue() {
+            wp_enqueue_style( 'magical_css', MAGICALM_ASSETS . '/css/magic-mouse.css', [], time(), false );
+            wp_enqueue_script( 'magical_js', MAGICALM_ASSETS . '/js/magic-mouse.js', [], time(), true );
+
+            $outer_height = get_option( 'wpmm_cursor_height' );
+            $outer_width = get_option( 'wpmm_cursor_width' );
+            $hover_effect = get_option( 'hover_effect_settings' );
+            $default_cursor = get_option( 'default_cursor' );
+
+            $check_tf = $default_cursor == 1 ? 'true' : 'false';
+
+            $mouse_script = <<<EOD
+            magicMouse({
+                "outerStyle": "disable",
+                "hoverEffect": "{$hover_effect}",
+                "hoverItemMove": true,
+                "defaultCursor": {$check_tf},
+                "outerWidth": {$outer_width},
+                "outerHeight": {$outer_height}
+            });
+        EOD;
+            wp_add_inline_script( 'magical_js', $mouse_script );
+
+            $cursor_color = get_option( 'cursor_color' );
+            $pointer_color = get_option( 'pointer_color' );
+            $mouse_style = <<<EOD
+            #magicMouseCursor {
+                border: 1px solid {$cursor_color};
+                background: transparent;
+                border-radius: 50%;
+            }
+
+            #magicPointer {
+              height: 5px;
+              width: 5px;
+              background: {$pointer_color};
+              border-radius: 50%;
+            }
+        EOD;
+            wp_add_inline_style( 'magical_css', $mouse_style );
+        }
+
+        public function customizer_assets() {
+            wp_enqueue_script( 'custs-customizer-js', MAGICALM_ASSETS . '/js/customizer.js', ['jquery'], time(), true );
+        }
+
+        /**
+         *  The class singleton instance.
+         * @return Enqueue|null
+         * @since 1.0.0
+         * @static
+         */
+        public static function instance(): ?Magical_MOUSE_Enqueue {
+            if ( is_null( self::$instance ) ) {
+                self::$instance = new self();
+            }
+
+            return self::$instance;
+        }
+    }
+
+}
+
+Magical_MOUSE_Enqueue::instance();
