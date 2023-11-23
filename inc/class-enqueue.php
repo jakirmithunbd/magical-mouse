@@ -14,8 +14,8 @@ if ( ! class_exists( 'Magical_MOUSE_Enqueue' ) ) {
         }
 
         function frontend_enqueue() {
-            wp_enqueue_style( 'magical_css', MAGICALM_ASSETS . '/css/magic-mouse.css', [], time(), false );
-            wp_enqueue_script( 'magical_js', MAGICALM_ASSETS . '/js/magic-mouse.js', [], time(), true );
+            wp_enqueue_style( 'magical_css', MAGICALM_ASSETS . '/css/magical-mouse.css', [], time(), false );
+            wp_enqueue_script( 'magical_js', MAGICALM_ASSETS . '/js/magical-mouse.js', [], time(), true );
 
             $outer_height = get_option( 'wpmm_cursor_height' );
             $outer_width = get_option( 'wpmm_cursor_width' );

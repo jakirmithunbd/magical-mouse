@@ -40,7 +40,6 @@ final class Magical_MOUSE_BASE {
     }
 
     public function deactivate() {
-        // $this->include_classes( ['class-uninstall'] );
 
         flush_rewrite_rules();
     }
