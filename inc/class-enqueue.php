@@ -8,7 +8,7 @@ if ( ! class_exists( 'Magical_MOUSE_Enqueue' ) ) {
      */
     class Magical_MOUSE_Enqueue {
         protected static $instance = null;
-        public function register() {
+        public function __construct() {
             add_action( 'wp_enqueue_scripts', [$this, 'frontend_enqueue'] );
             add_action( 'customize_preview_init', [$this, 'customizer_assets'] );
         }
@@ -17,10 +17,10 @@ if ( ! class_exists( 'Magical_MOUSE_Enqueue' ) ) {
             wp_enqueue_style( 'magical_css', MAGICALM_ASSETS . '/css/magical-mouse.css', [], time(), false );
             wp_enqueue_script( 'magical_js', MAGICALM_ASSETS . '/js/magical-mouse.js', [], time(), true );
 
-            $outer_height = get_option( 'wpmm_cursor_height' );
-            $outer_width = get_option( 'wpmm_cursor_width' );
-            $hover_effect = get_option( 'hover_effect_settings' );
-            $default_cursor = get_option( 'default_cursor' );
+            $outer_height = get_option( 'wpmm_cursor_height', 30 );
+            $outer_width = get_option( 'wpmm_cursor_width', 30 );
+            $hover_effect = get_option( 'hover_effect_settings', 'circle-move' );
+            $default_cursor = get_option( 'default_cursor', false );
 
             $check_tf = $default_cursor == 1 ? 'true' : 'false';
 
@@ -36,8 +36,8 @@ if ( ! class_exists( 'Magical_MOUSE_Enqueue' ) ) {
         EOD;
             wp_add_inline_script( 'magical_js', $mouse_script );
 
-            $cursor_color = get_option( 'cursor_color' );
-            $pointer_color = get_option( 'pointer_color' );
+            $cursor_color = get_option( 'cursor_color', '#ff0000' );
+            $pointer_color = get_option( 'pointer_color', '#000000' );
             $mouse_style = <<<EOD
             #magicMouseCursor {
                 border: 1px solid {$cursor_color};
