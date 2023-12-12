@@ -1,4 +1,4 @@
-=== Megical Mouse - The Best WordPress Plugin  for customizing your website cursor ===
+=== Magical Mouse - The Best WordPress Plugin  for customizing your website cursor ===
 Contributors: wpwebdevs, jakirmithunbd
 Tags: cursor, custom cursor, WordPress cursor, cursor plugin, mouse plugin, pointer plugin, change cursor, custom cursor plugin, custom pointer plugin, image cursor,
 Requires at least: 5.0
