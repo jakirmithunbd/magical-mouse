@@ -1,5 +1,5 @@
 <?php
-
+if (!defined('ABSPATH')) exit;
 /**
  * Magical Mouse
  */
@@ -31,8 +31,8 @@ final class Magical_MOUSE_BASE {
         $this->init_includes();
         $this->init_hooks();
 
-        register_activation_hook( MAGICALM_FILE, [$this, 'activate'] );
-        register_deactivation_hook( MAGICALM_FILE, [$this, 'deactivate'] );
+        register_activation_hook( MAGICAL_MOUSE_FILE, [$this, 'activate'] );
+        register_deactivation_hook( MAGICAL_MOUSE_FILE, [$this, 'deactivate'] );
     }
 
     public function activate() {
@@ -47,7 +47,7 @@ final class Magical_MOUSE_BASE {
     private function include_classes( $fileNames ) {
         if ( is_array( $fileNames ) ) {
             foreach ( $fileNames as $fileName ) {
-                $path = MAGICALM_INC . "/class-{$fileName}.php";
+                $path = MAGICAL_MOUSE_INC . "/class-{$fileName}.php";
                 if ( file_exists( $path ) ) {
                     require_once $path;
                 }
@@ -91,7 +91,7 @@ final class Magical_MOUSE_BASE {
      * @since 1.0.0
      */
     public function Magical_load_text_domain(): void {
-        load_plugin_textdomain( 'magical-mouse', false, dirname( plugin_basename( MAGICALM_FILE ) ) . '/languages' );
+        load_plugin_textdomain( 'magical-mouse', false, dirname( plugin_basename( MAGICAL_MOUSE_FILE ) ) . '/languages' );
     }
 }
 

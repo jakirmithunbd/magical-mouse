@@ -15,16 +15,20 @@
  * Domain Path:       /languages
  */
 
+if (
+    !defined('ABSPATH')
+) exit;
+
 // Define constants
-define( 'MAGICALM_VERSION', '1.0.0' );
-define( 'MAGICALM_FILE', __FILE__ );
-define( 'MAGICALM_PATH', dirname( __FILE__ ) );
-define( 'MAGICALM_INC', MAGICALM_PATH . '/inc' );
-define( 'MAGICALM_URL', plugin_dir_url( __FILE__ ) );
-define( 'MAGICALM_ASSETS', MAGICALM_URL . 'assets' );
+define( 'MAGICAL_MOUSE_VERSION', '1.0.0' );
+define( 'MAGICAL_MOUSE_FILE', __FILE__ );
+define( 'MAGICAL_MOUSE_PATH', dirname( __FILE__ ) );
+define( 'MAGICAL_MOUSE_INC', MAGICAL_MOUSE_PATH . '/inc' );
+define( 'MAGICAL_MOUSE_URL', plugin_dir_url( __FILE__ ) );
+define( 'MAGICAL_MOUSE_ASSETS', MAGICAL_MOUSE_URL . 'assets' );
 
 // Check if the file exists before requiring it
 
-if ( realpath( MAGICALM_INC . '/magical-mouse-base.php' ) ) {
-    require_once MAGICALM_INC . '/magical-mouse-base.php';
+if ( realpath( MAGICAL_MOUSE_INC . '/magical-mouse-base.php' ) ) {
+    require_once MAGICAL_MOUSE_INC . '/magical-mouse-base.php';
 }

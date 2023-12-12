@@ -2,7 +2,7 @@
 Contributors: wpwebdevs, jakirmithunbd
 Tags: cursor, custom cursor, WordPress cursor, cursor plugin, mouse plugin, pointer plugin, change cursor, custom cursor plugin, custom pointer plugin, image cursor,
 Requires at least: 5.0
-Tested up to: 6.1
+Tested up to: 6.4
 Requires PHP: 7.0
 Stable tag: 1.0.0
 License: GPLv2 or later
